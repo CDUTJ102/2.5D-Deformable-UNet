@@ -1,5 +1,5 @@
 [![Python 3.8.0](https://img.shields.io/badge/python-3.8.0-blue.svg)](https://www.python.org/downloads/release/python-380/)
-![Repo Size](https://img.shields.io/github/repo-size/CDUTJ102/D-UNet)
+![Repo Size](https://img.shields.io/github/repo-size/CDUTJ102/2.5D-Deformable-UNet)
 <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/></a>
 
 # D-UNet
