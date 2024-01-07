@@ -2,6 +2,8 @@ import torch
 import SimpleITK as sitk
 import os
 from torch.utils.data import Dataset
+from numpy import random
+import numpy as np
 
 
 class CMRDataset(Dataset):
@@ -60,6 +62,8 @@ class CMRDataset(Dataset):
         pat = self.pat_list[idx]
         if self.mode == 'train':
             tensor_image1, tensor_label = self.dcenter_crop(tensor_image1, tensor_label)
+            tensor_image1, tensor_label = self.RandomFlip(tensor_image1, tensor_label)
+            tensor_image1, tensor_label = self.RandomRotate90(tensor_image1, tensor_label)
             return tensor_image1, tensor_label
         elif self.mode == 'valid':
             tensor_image1, tensor_label = self.dcenter_crop(tensor_image1, tensor_label)
@@ -80,3 +84,27 @@ class CMRDataset(Dataset):
         croped_img1 = img1[:, rand_z - 40:rand_z + 40, :, :]
         croped_lab = label[:, rand_z - 40:rand_z + 40, :, :]
         return croped_img1, croped_lab
+
+    def RandomFlip(self, img1, label, axis_prob=0.5, axis=1):
+        if random.uniform() > axis_prob:
+            img1 = img1.numpy()
+            label = label.numpy()
+            if random.uniform() > axis_prob:
+                axis = 2
+            img1 = np.flip(img1, axis)
+            label = np.flip(label, axis)
+            img1 = torch.from_numpy(img1.copy())
+            label = torch.from_numpy(label.copy())
+        return img1, label
+
+    def RandomRotate90(self, img1, label, axis_prob=0.5):
+        if random.uniform() > axis_prob:
+            img1 = img1.numpy()
+            label = label.numpy()
+            axis = (1, 2)
+            k = random.randint(0, 4)
+            img1 = np.rot90(img1, k, axis)
+            label = np.rot90(label, k, axis)
+            img1 = torch.from_numpy(img1.copy())
+            label = torch.from_numpy(label.copy())
+        return img1, label
