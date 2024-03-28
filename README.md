@@ -3,7 +3,7 @@
 <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/></a>
 
 # D-UNet
-This is the official PyTorch implementation of the D-UNet dose prediction algorithm from "Dose Prediction Using 2.5D Deformable Convolutional Network for Nasopharyngeal Carcinoma" (Yanhua Liu, Wang Luo, Min Liu, Feng Yang, Hongjuan Yang, 2023).
+This is the official PyTorch implementation of the D-UNet dose prediction algorithm from "2.5D Deformable Convolutional Network for Dose Prediction in Nasopharyngeal Carcinoma Radiotherapy" (Yanhua Liu, Wang Luo, Xiangchen Li, Min Liu, 2024).
 
 The novel 2.5D Deformable UNet, named D-UNet, for the automatic prediction of dose distribution using computer tomography (CT) images, masks of planning target volumes (PTVs) and organs at risk (OARs).
 
